@@ -1,0 +1,7 @@
+{
+  "name": "Projeto_BSN",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
