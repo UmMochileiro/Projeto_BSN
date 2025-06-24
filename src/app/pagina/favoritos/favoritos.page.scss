@@ -1,0 +1,120 @@
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22%, 1fr)); 
+  gap: 10px;
+  padding: 10px;
+}
+
+.pokemon-card {
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  
+  img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    padding: 10px;
+    background-color: transparent;
+  }
+  
+  ion-card-header {
+    padding: 10px;
+    
+    ion-card-title {
+      font-size: 1rem;
+    }
+    
+    ion-card-subtitle {
+      font-size: 0.8rem;
+    }
+  }
+  
+  ion-card-content {
+    max-height: 120px;
+    overflow: auto;
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+}
+
+// Para telas menores (tablets)
+@media (max-width: 768px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Para telas muito pequenas (celulares)
+@media (max-width: 480px) {
+  .pokemon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.pokemon-card {
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      padding: 10px;
+      background-color: transparent;
+    }
+    
+    .favorite-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      --padding-start: 4px;
+      --padding-end: 4px;
+      --padding-top: 4px;
+      --padding-bottom: 4px;
+      --box-shadow: none;
+      z-index: 10;
+    }
+  }
+}
+.no-favoritos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 50vh;
+  padding: 2rem;
+  margin: 2rem;
+  background-color: transparent;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  
+  .empty-icon {
+    font-size: 80px;
+    color: #ffc107;
+    margin-bottom: 1rem;
+  }
+  
+  h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: #6c757d;
+    margin-bottom: 2rem;
+    max-width: 300px;
+  }
+  
+  ion-button {
+    --border-radius: 24px;
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
+    height: 48px;
+    font-weight: 500;
+  }
+}

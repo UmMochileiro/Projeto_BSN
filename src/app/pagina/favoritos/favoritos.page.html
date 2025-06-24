@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Meus Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Procurar Pokémon favorito"></ion-searchbar>
+  
+   <div *ngIf="favoritos.length === 0" class="no-favoritos">
+    <p>Você não tem Pokémons favoritos.</p>
+    <ion-button routerLink="/pagina/pokemons">Ver Pokémons</ion-button>
+  </div>
+  
+  
+  <!-- Pokémons favoritos -->
+  <div class="pokemon-grid">
+    <ion-card *ngFor="let pokemon of favoritos" class="pokemon-card">
+      <div class="image-container">
+        <img *ngIf="pokemon.image" [src]="pokemon.image || 'assets/default.png'" [alt]="pokemon.name || 'Pokemon image'" >
+        <ion-button fill="clear" class="favorite-button" (click)="removerFavorito(pokemon)">
+          <ion-icon
+            name="star-sharp"
+            slot="icon-only"
+            color="warning">
+          </ion-icon>
+        </ion-button>
+      </div>
+      
+      <ion-card-header>
+        <ion-card-title>{{pokemon.name | titlecase}}</ion-card-title>
+        <ion-card-subtitle>Tipo: {{types(pokemon) | titlecase}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p>{{pokemon.description | titlecase}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

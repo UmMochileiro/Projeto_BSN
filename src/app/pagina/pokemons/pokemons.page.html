@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" color="primary">
+      <ion-menu-button color="primary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pokémons</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Procurar Pokémon"></ion-searchbar>
+   <!-- nome e url -->
+  <div class="pokemon-grid">
+<ion-card *ngFor="let pokemon of pokemons; let i = index" class="pokemon-card" (click)="verDetalhes(pokemon)">
+  <div class="image-container">
+    <img *ngIf="pokemon.image" [src]="pokemon.image || 'assets/default.png'" [alt]="pokemon.name || 'Pokemon image'" >
+    <ion-button fill="clear" class="favorite-button" (click)="toggleFavorito(pokemon); $event.stopPropagation()">
+      <ion-icon
+        [name]="pokemon.favorito ? 'star-sharp' : 'star-outline'"
+        slot="icon-only"
+        color="warning">
+      </ion-icon>
+    </ion-button>
+  </div>
+  <ion-card-header>
+    <ion-card-title>{{pokemon.name | titlecase}}</ion-card-title>
+    <ion-card-subtitle>Tipo: {{types(pokemon) | titlecase}}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p>{{pokemon.description | titlecase}}</p>
+  </ion-card-content>
+</ion-card>
+  </div>
+</ion-content>

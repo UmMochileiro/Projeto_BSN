@@ -1,0 +1,91 @@
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22%, 1fr)); 
+  gap: 10px;
+  padding: 10px;
+}
+
+.pokemon-card {
+  width: 100%;
+  margin: 0;
+  height: 100%;
+  
+  img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    padding: 10px;
+    background-color: transparent;
+  }
+  
+  ion-card-header {
+    padding: 10px;
+    
+    ion-card-title {
+      font-size: 1rem;
+    }
+    
+    ion-card-subtitle {
+      font-size: 0.8rem;
+    }
+  }
+  
+  ion-card-content {
+    max-height: 120px;
+    overflow: auto;
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+}
+
+// Para telas menores (tablets)
+@media (max-width: 768px) {
+  .pokemon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Para telas muito pequenas (celulares)
+@media (max-width: 480px) {
+  .pokemon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.pokemon-card {
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      padding: 10px;
+      background-color: transparent;
+    }
+    
+    .favorite-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      --padding-start: 4px;
+      --padding-end: 4px;
+      --padding-top: 4px;
+      --padding-bottom: 4px;
+      --box-shadow: none;
+      z-index: 10;
+    }
+  }
+}
+.pokemon-card {
+
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+}

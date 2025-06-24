@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pagina/pokemons"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pokemon.name | titlecase }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleFavorito()">
+        <ion-icon 
+          [name]="pokemon.favorito ? 'star-sharp' : 'star-outline'" 
+          slot="icon-only" 
+          color="warning">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando detalhes...</p>
+  </div>
+
+  <div *ngIf="error" class="error-container">
+    <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+    <p>Não foi possível carregar as informações deste Pokémon.</p>
+    <ion-button routerLink="/pagina/pokemons">Voltar para a lista</ion-button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="pokemon-details">
+    <div class="pokemon-header">
+      <div class="pokemon-image-container">
+        <img [src]="pokemon.image || 'assets/default.png'" [alt]="pokemon.name">
+      </div>
+      
+      <div class="pokemon-info">
+        <h1>{{ pokemon.name | titlecase }} <span class="pokemon-id">#{{ pokemon.id }}</span></h1>
+      </div>
+    </div>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Descrição</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ pokemon.description }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Características</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-label>Altura</ion-label>
+            <ion-note slot="end">{{ pokemon.height }} m</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Peso</ion-label>
+            <ion-note slot="end">{{ pokemon.weight }} kg</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>Habilidades</ion-label>
+            <ion-note slot="end">{{ pokemon.abilities.join(', ') | titlecase }}</ion-note>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Estatísticas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Na seção de estatísticas do Pokémon -->
+<div class="stat-container">
+  <h2 class="stat-title">Estatísticas</h2>
+  
+  <div class="stat-bar" *ngFor="let stat of pokemon.stats">
+    <div class="stat-value">{{ stat.value }}</div>
+    <div class="stat-bar-container">
+      <div class="stat-bar-fill" 
+           [ngClass]="{
+             'hp': stat.name === 'hp',
+             'attack': stat.name === 'attack',
+             'defense': stat.name === 'defense',
+             'special-attack': stat.name === 'special-attack',
+             'special-defense': stat.name === 'special-defense',
+             'speed': stat.name === 'speed'
+           }"
+           [style.width.%]="getStatPercentage(stat.value)"></div>
+    </div>
+    <div class="stat-name">{{ getNiceStatName(stat.name) }}</div>
+  </div>
+</div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
