@@ -11,7 +11,6 @@ coverage
 .tmp
 .temp
 dist
-www
 platforms
 plugins
 Dockerfile

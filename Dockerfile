@@ -25,8 +25,14 @@ FROM nginx:alpine
 # Copiar arquivos buildados para o nginx
 COPY --from=build /app/www /usr/share/nginx/html
 
+# Debug: Listar arquivos copiados
+RUN ls -la /usr/share/nginx/html/
+
 # Copiar configuração customizada do nginx
 COPY nginx.conf /etc/nginx/nginx.conf
+
+# Debug: Verificar configuração do nginx
+RUN nginx -t
 
 # Expor porta 80
 EXPOSE 80
