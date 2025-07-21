@@ -60,5 +60,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.3"
   },
-  "description": "An Ionic project"
+  "description": "Pokédex App - Uma aplicação Ionic Angular para explorar e favoritar Pokémons usando a PokéAPI"
 }

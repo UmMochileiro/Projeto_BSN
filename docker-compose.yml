@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  pokedex-app:
+    build: .
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    container_name: pokedex-ionic
+    environment:
+      - NODE_ENV=production
