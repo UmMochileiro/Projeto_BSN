@@ -1,5 +1,5 @@
 # Multi-stage build para aplicação Ionic Angular
-FROM node:18-alpine as build
+FROM node:20-alpine AS build
 
 # Definir diretório de trabalho
 WORKDIR /app
