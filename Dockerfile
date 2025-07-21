@@ -14,7 +14,10 @@ RUN npm ci --silent
 COPY . .
 
 # Build da aplicação para produção
-RUN npm run build
+RUN npm run build -- --configuration=production
+
+# Listar arquivos gerados para debug
+RUN ls -la /app/www/
 
 # Estágio final - servir a aplicação
 FROM nginx:alpine
