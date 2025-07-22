@@ -13,8 +13,8 @@ RUN npm ci --silent
 # Copiar código fonte
 COPY . .
 
-# Build da aplicação para produção
-RUN npm run build -- --configuration=production
+# Build da aplicação para produção com subpath /pokedex/
+RUN node build-for-subpath.js
 
 # Listar arquivos gerados para debug
 RUN ls -la /app/www/
