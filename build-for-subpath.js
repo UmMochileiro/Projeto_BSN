@@ -4,7 +4,7 @@ const path = require('path');
 
 // Build da aplicação
 console.log('Building Angular application...');
-execSync('ng build --configuration=production --base-href=/pokedex/', { stdio: 'inherit' });
+execSync('npx ng build --configuration=production --base-href=/pokedex/', { stdio: 'inherit' });
 
 // Modificar arquivos para funcionar em subpath
 console.log('Modifying files for subpath deployment...');
