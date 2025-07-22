@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  pokedex:
+    image: ummochileiro/pokedex-app:latest
+    container_name: pokedex-app
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
