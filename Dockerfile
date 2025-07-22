@@ -22,8 +22,11 @@ RUN ls -la /app/www/
 # Estágio final - servir a aplicação
 FROM nginx:alpine
 
+# Remover configuração padrão do nginx
+RUN rm -rf /usr/share/nginx/html/*
+
 # Copiar arquivos buildados para o nginx
-COPY --from=build /app/www /usr/share/nginx/html
+COPY --from=build /app/www/ /usr/share/nginx/html/
 
 # Debug: Listar arquivos copiados
 RUN ls -la /usr/share/nginx/html/
@@ -33,6 +36,9 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Debug: Verificar configuração do nginx
 RUN nginx -t
+
+# Criar diretório para logs se não existir
+RUN mkdir -p /var/log/nginx
 
 # Expor porta 80
 EXPOSE 80
